@@ -1,0 +1,51 @@
+.adminNav {
+    background-color: #62B1F6;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding:10px 35px;
+    justify-content:space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+.adminNav__user {
+    display: flex;
+    align-items: center;
+}
+
+.adminNav__user__avatar {
+    height:50px !important;
+    width: 50px !important;
+    margin-left: 1300px !important;
+}
+
+.adminNav__user__dropdown {
+    position: absolute;
+    top: 70px;
+    right: 10px;
+}
+
+.adminUserDropdown {
+    background-color: white;
+    width: 150px;
+    padding:5px 10px;
+    border-radius: 0px 0px 5px 5px;
+    border: 1px solid black;
+    font-weight: 500;
+    color: black;
+}
+.adminUserDropdown > ul > li {
+     display: flex;
+     align-items: center;
+     padding: 5px;
+     list-style-type: none;
+}
+hr {
+   border: 0;
+   color: black;
+   background-color: rgba(0,0,0,0.2);
+   height: .5px;
+}

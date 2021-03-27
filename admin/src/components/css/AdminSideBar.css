@@ -1,0 +1,54 @@
+.adminSideBar {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 20%;
+   color: white;
+   box-sizing: border-box;
+}
+.adminSideBar__content {
+    margin-top: 90px;
+    height: 100%;
+    width: 100%;
+    padding: 25px;
+
+}
+.adminSideBar__button {
+    margin-top: 40px;
+    width:100%;
+    height: 50px;
+    border-radius: 10px !important;
+    border: none !important;
+    background-color: #62B1F6 !important;
+    color: white !important;
+    font-weight: 500 !important;
+    text-transform: capitalize !important;
+    font-size: large !important;
+}
+.adminSideBar__content__upperList {
+    color: black;
+    margin-top: 20px;
+    list-style:none;
+    padding:0px 10px;
+   
+}
+.adminSideBar__content__lowerList {
+    margin-top: 20px;
+    list-style:none;
+    padding:0px 10px;
+}
+.adminSideBar__content > ul > li > a {
+    text-decoration: none;
+    color: black;
+}
+.list__icon{
+    font-size: 2rem !important;
+}
+.adminListItem{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-weight: 500;
+    font-size: large;
+ }
+ 

@@ -1,0 +1,19 @@
+.adminBody{
+ margin-top: 90px;
+ height: auto ;
+}
+::-webkit-scrollbar {
+    background-color:#D3D3D3;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color:#62B1F6;
+    height: 50px;
+    backdrop-filter: brightness(0%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--themeLightShade);
+    height: 50px;
+}
