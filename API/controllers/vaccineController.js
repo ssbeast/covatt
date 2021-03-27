@@ -9,10 +9,9 @@ exports.getVaccineRecords = async (req, res, next) => {
       .populate("consumer", "name contactNumber")
       .populate("vaccinator", "name contactNumber")
       .then((vaccines) => {
-        const filteredVaccinesRecords = vaccines.filter(
-          (vaccine) => vaccine.vaccinator["_id"] == req.get("x-vaccinator-id")
-        );
-        // console.log(filteredVaccinesRecords);
+        const filteredVaccinesRecords = vaccines.filter((vaccine) => {
+          return vaccine.vaccinator["_id"] == req.get("x-vaccinator-id");
+        });
         return res.status(200).json({
           success: true,
           vaccinatorId: req.get("x-vaccinator-id"),
