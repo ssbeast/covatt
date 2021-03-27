@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "924cf2ec-05a4-4ed1-92db-142e4b8e9ec2",
+		"name": "Covatt-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"virat\",\r\n    \"contactNumber\": 9518238671,\r\n    \"role\": \"vaccinator\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"auth": {
+							"type": "apikey"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Integrity-Key",
+								"value": "9518238671-trisha-20bf140d-2040-477b-8ecd-76f4183f9db1",
+								"type": "text"
+							},
+							{
+								"key": "x-admin-key",
+								"value": "8788e696-a72b-4fe4-a311-953e10c34244@admin",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/user/60534f5fb766ba4ae0f0ac36",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"user",
+								"60534f5fb766ba4ae0f0ac36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-integrity-key",
+								"value": "9518238671-virat-41c7ae2a-7baf-4f67-92f9-224a4812e9f6",
+								"type": "text"
+							},
+							{
+								"key": "x-vaccinator-id",
+								"value": "605358944e0b6e14b8004621",
+								"type": "text"
+							},
+							{
+								"key": "x-admin-key",
+								"value": "8788e696-a72b-4fe4-a311-953e10c34244@admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Integrity-Key",
+								"value": "9518238671-trisha-aec64817-766b-43c3-b5dc-215d3d4abfaf",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/user/60534d59c3a8573bc4d6f7e9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"user",
+								"60534d59c3a8573bc4d6f7e9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "link account",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Integrity-Key",
+								"value": "9518238671-trisha-20bf140d-2040-477b-8ecd-76f4183f9db1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/user/link/60534f5fb766ba4ae0f0ac36?with=6037bd6fe218cb004c2f1817",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"user",
+								"link",
+								"60534f5fb766ba4ae0f0ac36"
+							],
+							"query": [
+								{
+									"key": "with",
+									"value": "6037bd6fe218cb004c2f1817"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vaccine",
+			"item": [
+				{
+					"name": "create vaccine record",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-integrity-key",
+								"value": "9518238671-virat-41c7ae2a-7baf-4f67-92f9-224a4812e9f6",
+								"type": "text"
+							},
+							{
+								"key": "x-vaccinator-id",
+								"value": "605358944e0b6e14b8004621",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brand\": \"Covaxin\",\r\n    \"consumer\": \"60534f5fb766ba4ae0f0ac36\",\r\n    \"vaccinator\":\"605358944e0b6e14b8004621\",\r\n    \"location\": \"ambala\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/vaccine",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"vaccine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all vaccine records",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Integrity-key",
+								"value": "9518238671-virat-41c7ae2a-7baf-4f67-92f9-224a4812e9f6",
+								"type": "text"
+							},
+							{
+								"key": "x-vaccinator-id",
+								"value": "605358944e0b6e14b8004621",
+								"type": "text"
+							},
+							{
+								"key": "x-admin-key",
+								"value": "8788e696-a72b-4fe4-a311-953e10c34244@admin",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/vaccine",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"vaccine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get vaccine record by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Integrity-Key",
+								"value": "9518238671-virat-41c7ae2a-7baf-4f67-92f9-224a4812e9f6",
+								"type": "text"
+							},
+							{
+								"key": "x-vaccinator-id",
+								"value": "605358944e0b6e14b8004621",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/vaccine/6037c5f729477f2920c0f2bd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"vaccine",
+								"6037c5f729477f2920c0f2bd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete vaccine record by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Integrity-Key",
+								"value": "9518238671-virat-41c7ae2a-7baf-4f67-92f9-224a4812e9f6",
+								"type": "text"
+							},
+							{
+								"key": "X-vaccinator-id",
+								"value": "605358944e0b6e14b8004621",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/vaccine/6037df43dea35e12e85e67b6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"vaccine",
+								"6037df43dea35e12e85e67b6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stats",
+			"item": [
+				{
+					"name": "get stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/covatt-api/v1/stats",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"covatt-api",
+								"v1",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

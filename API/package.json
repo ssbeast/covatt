@@ -1,0 +1,26 @@
+{
+  "name": "covatt-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Parth Sethi @ victorakaps <sparth0200@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "argon2": "^0.27.1",
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "ioredis": "^4.24.4",
+    "mongoose": "^5.11.18",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.0"
+  }
+}
