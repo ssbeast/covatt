@@ -5,6 +5,7 @@ dependencies:
   helmet: 4.4.1
   ioredis: 4.24.4
   mongoose: 5.12.2
+  neat-csv: 6.0.1
   uuid: 8.3.2
 devDependencies:
   chalk: 4.1.0
@@ -217,6 +218,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /csv-parser/3.0.0:
+    dependencies:
+      minimist: 1.2.5
+    dev: false
+    engines:
+      node: '>= 10'
+    hasBin: true
+    resolution:
+      integrity: sha512-s6OYSXAK3IdKqYO33y09jhypG/bSDHPuyCme/IdEHfWpLf/jKcpitVFyOC6UemgGk8v7Q5u2XE0vvwmanxhGlQ==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -398,6 +408,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-LANAXHU4w51+s3sxcCLjJfsBi/c=
+  /get-stream/6.0.0:
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-A1B3Bh1UmL0bidM/YX2NsCOTnGJePL9rO/M+Mw3m9f2gUpfokS0hi5Eah0WSUEWZdZhIZtMjkIYS7mDfOqNHbg==
   /glob/7.1.6:
     dependencies:
       fs.realpath: 1.0.0
@@ -696,6 +712,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
+  /neat-csv/6.0.1:
+    dependencies:
+      csv-parser: 3.0.0
+      get-stream: 6.0.0
+      to-readable-stream: 2.1.0
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-j87x1Rj2KiyZeOtFzedZXV8XN7Om/BcEcclPfj84I24yq9vfarNY8DrKKN8nfwN1FtQZgBvxTfQbwpugkV2MoA==
   /needle/2.6.0:
     dependencies:
       debug: 3.2.7
@@ -1091,6 +1117,12 @@ packages:
       node: '>=4.5'
     resolution:
       integrity: sha512-w2VwSrBoHa5BsSyH+KxEqeQBAllHhccyMFVHtGtdMpF4W7IRWfZjFiQceJPChOeTsSDVUpER2T8FA93pr0L+QA==
+  /to-readable-stream/2.1.0:
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-o3Qa6DGg1CEXshSdvWNX2sN4QHqg03SPq7U6jPXRahlQdl5dK8oXjkU/2/sGrnOZKeGV1zLSO8qPwyKklPPE7w==
   /toidentifier/1.0.0:
     dev: false
     engines:
@@ -1155,4 +1187,5 @@ specifiers:
   helmet: ^4.4.1
   ioredis: ^4.24.4
   mongoose: ^5.11.18
+  neat-csv: ^6.0.1
   uuid: ^8.3.2

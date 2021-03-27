@@ -1,7 +1,8 @@
 const express = require("express");
 const helmet = require("helmet");
 
-const { connectDB, redis } = require("./db/db.js");
+const { connectDB } = require("./db/db.js");
+const { setVaccinatorsRecords } = require("./db/setVaccinators");
 
 const userEndpoints = require("./routes/user");
 const vaccineEndpoints = require("./routes/vaccine");
@@ -10,6 +11,7 @@ const { notFound, errorHandler } = require("./middlewares/middlewares.js");
 
 const app = express();
 connectDB();
+setVaccinatorsRecords();
 
 app.use(helmet());
 app.use(express.json());

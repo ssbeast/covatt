@@ -1,5 +1,7 @@
 const User = require("../models/user");
 
+const { redis } = require("../db/db");
+
 exports.getUsers = async (req, res, next) => {
   if (res.locals.isAdmin) {
     try {
@@ -34,6 +36,22 @@ exports.addUser = async (req, res, next) => {
   try {
     const userData = req.body;
     const rawKey = req.body.rawKey;
+    await redis
+      .get("vaccinatorsPhoneNumber")
+      .then((result) => {
+        if (result) {
+          return JSON.parse(result);
+        }
+      })
+      .then((result) => {
+        const isVaccinator = result.phoneNumbers.includes(
+          userData.contactNumber
+        );
+        if (isVaccinator) {
+          userData.role = "vaccinator";
+        }
+      });
+
     const user = await User.create(userData);
     user.integrityKey = rawKey;
     return res.status(200).json({
