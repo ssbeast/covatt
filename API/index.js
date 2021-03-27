@@ -1,5 +1,6 @@
 const express = require("express");
 const helmet = require("helmet");
+const cors = require("cors");
 
 const { connectDB } = require("./db/db.js");
 const { setVaccinatorsRecords } = require("./db/setVaccinators");
@@ -14,6 +15,7 @@ connectDB();
 setVaccinatorsRecords();
 
 app.use(helmet());
+app.use(cors());
 app.use(express.json());
 
 app.use("/covatt-api/v1/user", userEndpoints);

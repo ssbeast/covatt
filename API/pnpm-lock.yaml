@@ -1,6 +1,7 @@
 dependencies:
   argon2: 0.27.1
   axios: 0.21.1
+  cors: 2.8.5
   express: 4.17.1
   helmet: 4.4.1
   ioredis: 4.24.4
@@ -218,6 +219,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+  /cors/2.8.5:
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
+    dev: false
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==
   /csv-parser/3.0.0:
     dependencies:
       minimist: 1.2.5
@@ -1183,6 +1193,7 @@ specifiers:
   argon2: ^0.27.1
   axios: ^0.21.1
   chalk: ^4.1.0
+  cors: ^2.8.5
   express: ^4.17.1
   helmet: ^4.4.1
   ioredis: ^4.24.4

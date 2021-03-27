@@ -4,7 +4,7 @@ import AdminNav from "./AdminNav";
 
 function AdminPage() {
     return (
-        <div>
+        <div> 
             <AdminNav />
             <AdminBody />
         </div>

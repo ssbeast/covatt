@@ -183,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.70,
-                  child: Row(
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
@@ -227,7 +227,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.70,
-                  child: Row(
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(

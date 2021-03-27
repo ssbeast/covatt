@@ -9,14 +9,21 @@ exports.getVaccineRecords = async (req, res, next) => {
       .populate("consumer", "name contactNumber")
       .populate("vaccinator", "name contactNumber")
       .then((vaccines) => {
-        const filteredVaccinesRecords = vaccines.filter((vaccine) => {
-          return vaccine.vaccinator["_id"] == req.get("x-vaccinator-id");
-        });
+        // const filteredVaccinesRecords = vaccines.filter((vaccine) => {
+        //   return vaccine.vaccinator["_id"] == req.get("x-vaccinator-id");
+        // });
+        // return res.status(200).json({
+        //   success: true,
+        //   vaccinatorId: req.get("x-vaccinator-id"),
+        //   totalVaccinationsByThem: filteredVaccinesRecords.length,
+        //   data: filteredVaccinesRecords,
+        // });
+
         return res.status(200).json({
           success: true,
           vaccinatorId: req.get("x-vaccinator-id"),
-          totalVaccinationsByThem: filteredVaccinesRecords.length,
-          data: filteredVaccinesRecords,
+          totalVaccinationsByThem: vaccines.length,
+          data: vaccines,
         });
       });
   } catch (err) {
