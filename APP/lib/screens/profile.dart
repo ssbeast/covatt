@@ -1,6 +1,8 @@
 import 'package:covatt/common/custom_button.dart';
 import 'package:covatt/screens/FirstScreen/first_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -13,6 +15,70 @@ class _ProfileScreenState extends State<ProfileScreen> {
   DateTime selectedDate = DateTime.now();
   String name = '';
   String dropdownValue = 'Male';
+  PickedFile _image;
+  final ImagePicker _picker = ImagePicker();
+
+  _imgFromCamera() async {
+    final image =
+        await _picker.getImage(source: ImageSource.camera, imageQuality: 50);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
+  _imgFromGallery() async {
+    final image =
+        await _picker.getImage(source: ImageSource.gallery, imageQuality: 50);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        backgroundColor: Color(0xFF1DE9B6),
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: Icon(Icons.photo_library,
+                          color: Colors.white, size: 30),
+                      title: Text('Gallery',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 30)),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  new ListTile(
+                    leading:
+                        Icon(Icons.photo_camera, color: Colors.white, size: 30),
+                    title: Text('Camera',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 30)),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -52,11 +118,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                CircleAvatar(
-                  backgroundColor: Colors.brown.shade800,
-                  radius: MediaQuery.of(context).size.width * 0.15,
-                  backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/54120820?s=460&u=8589f5464c16cef31a3f6f2aa7e46d7e4a190aa8&v=4'),
+                GestureDetector(
+                  onTap: () {
+                    _showPicker(context);
+                  },
+                  child: CircleAvatar(
+                    radius: MediaQuery.of(context).size.width * 0.22,
+                    backgroundColor: Color(0xFF1DE9B6),
+                    child: _image != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(
+                                MediaQuery.of(context).size.width * 0.25),
+                            child: Image.file(
+                              File(_image.path),
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              height: MediaQuery.of(context).size.width * 0.4,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius: BorderRadius.circular(
+                                    MediaQuery.of(context).size.width * 0.25)),
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: MediaQuery.of(context).size.width * 0.4,
+                            child: Icon(
+                              Icons.account_circle,
+                              color: Colors.grey,
+                              size: MediaQuery.of(context).size.width * 0.3,
+                            ),
+                          ),
+                  ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,

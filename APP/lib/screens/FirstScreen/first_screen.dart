@@ -26,10 +26,9 @@ class _FirstScreenState extends State<FirstScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: CustomDrawer(
-        name: "Madhav Bansal",
+        name: "Saurabh Sahu",
         subtitle: "Vaccinator",
-        imageURL:
-            "https://firebasestorage.googleapis.com/v0/b/flutter-firebase-323ef.appspot.com/o/DSC_0537.JPG.png?alt=media&token=162ca151-adaa-426c-a4d3-54db1f3199cc",
+        imageURL: "https://avatars.githubusercontent.com/u/54120820?v=4",
       ),
       appBar: CustomAppBar(
         drawerkey: _scaffoldKey,

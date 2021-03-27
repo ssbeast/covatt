@@ -42,10 +42,21 @@ class _CustomDrawerState extends State<CustomDrawer> {
             color: Colors.black,
           ),
           DrawerListTile(name: "Dashboard", icon: Icons.dashboard, route: '/'),
+          Visibility(
+            visible: (1 == 1), // condition here
+            child: DrawerListTile(
+                name: "Admin Panel",
+                icon: Icons.admin_panel_settings,
+                route: '/admin_screen'),
+          ),
           DrawerListTile(name: "Profile", icon: Icons.face, route: '/'),
           DrawerListTile(
-              name: "Family", icon: Icons.family_restroom, route: '/'),
+              name: "Family",
+              icon: Icons.family_restroom,
+              route: '/family_screen'),
           DrawerListTile(name: "Feedback", icon: Icons.feedback, route: '/'),
+          DrawerListTile(
+              name: "QR Code", icon: Icons.qr_code, route: '/qr_screen'),
           DrawerListTile(
               name: "Report Symptom", icon: Icons.bug_report, route: '/'),
           DrawerListTile(name: "Logout", icon: Icons.logout, route: '/'),
