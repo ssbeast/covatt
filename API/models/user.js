@@ -3,6 +3,9 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const userSchema = new mongoose.Schema(
   {
+    uid: {
+      type: String,
+    },
     name: {
       type: String,
       required: [true, "Name is required"],

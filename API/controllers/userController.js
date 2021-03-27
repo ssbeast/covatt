@@ -68,17 +68,31 @@ exports.addUser = async (req, res, next) => {
 
 exports.getUser = async (req, res, next) => {
   try {
-    User.findById(req.params.id)
+    User.find({ uid: req.params.id })
       .populate("vaccinations", "brand vaccinator location createdAt")
       .populate("linkedAccounts", "name contactNumber vaccinations")
       .then(async (user) => {
+        console.log(user);
+        console.log("ass")
         user.integrityKey = "azs";
         return res.status(200).json({
           success: true,
           data: user,
         });
       });
+
+    // User.findById(req.params.id)
+    //   .populate("vaccinations", "brand vaccinator location createdAt")
+    //   .populate("linkedAccounts", "name contactNumber vaccinations")
+    //   .then(async (user) => {
+    //     user.integrityKey = "azs";
+    //     return res.status(200).json({
+    //       success: true,
+    //       data: user,
+    //     });
+    //   });
   } catch (err) {
+    console.log(err)
     return res.status(500).json({
       success: false,
       error: err,

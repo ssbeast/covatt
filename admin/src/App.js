@@ -6,8 +6,8 @@ import VaccinePopup from "./components/popups/VaccinePopup";
 function App() {
   return (
     <div className="App">
-      {/* <Admin /> */}
-      <CreateUser />
+      <Admin />
+      {/* <CreateUser /> */}
       {/* <VaccinePopup/> */}
       {/* <LinkAccount /> */}
     </div>

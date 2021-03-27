@@ -20,8 +20,10 @@ router
 
 router
   .route("/:id")
-  .get(checkAdmin, checkIntegrity, getUser)
+  .get(getUser)
   .delete(checkAdmin, checkIntegrity, deleteUser);
+
+//   .get(checkAdmin, checkIntegrity, getUser)
 
 router.route("/link/:id").post(checkAdmin, checkIntegrity, linkUsers);
 

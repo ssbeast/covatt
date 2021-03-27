@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./css/AdminSideBar.css";
 import Button from "@material-ui/core/Button";
 
+
 function AdminSideBar(props) {
   const [list, showList] = useState(false);
   const displayList = () => {
@@ -31,9 +32,6 @@ function AdminSideBar(props) {
             <a href="$#">create new user</a>
           </li>
           <li className="adminListItem">
-            <a href="$#">delete user</a>
-          </li>
-          <li className="adminListItem">
             <a href="$#">link account</a>
           </li>
         </ul>
@@ -52,9 +50,6 @@ function AdminSideBar(props) {
         >
           <li className="adminListItem">
             <a href="$#">create vaccine record</a>
-          </li>
-          <li className="adminListItem">
-            <a href="$#">delete records</a>
           </li>
         </ul>
       </div>

@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Container, Row, Button, Table, Form } from "react-bootstrap";
+import { Container, Row, Button, Table, Form, Toast } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { red } from "@material-ui/core/colors";
-
 function AdminBodyContent(props) {
-  var btn = {
+  const btn_pointer = {
+    cursor: "pointer",
+  };
+  const btn = {
     backgroundColor: "#00BFA5",
     border: "none",
     margin: "5px 10px",
+    cursor: "pointer",
   };
-  var row = {
+  const btn_red = {
+    backgroundColor: "red",
+    border: "none",
+    fontWeight: "600",
+    margin: "5px 10px",
+    cursor: "pointer",
+  };
+  const row = {
     boxShadow: "2px 2px 2px 2px rgba(0,0,0,0.1)",
     margin: "4rem",
     padding: ".5rem",
   };
-  var tablee = {
+  const tablee = {
     marginLeft: "20%",
     border: "2px solid lightgrey",
     width: "100%",
@@ -54,14 +64,47 @@ function AdminBodyContent(props) {
   };
 
   const deleteUser = async (id) => {
+    axios({
+      method: "DELETE",
+      url: `http://localhost:3000/covatt-api/v1/user/${id}`,
+      headers: {
+        "x-admin-key": "8788e696-a72b-4fe4-a311-953e10c34244@admin",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
     console.log(id);
   };
 
   const deleteVaccine = async (id) => {
+    axios({
+      method: "DELETE",
+      url: `http://localhost:3000/covatt-api/v1/vaccine/${id}`,
+      headers: {
+        "x-admin-key": "8788e696-a72b-4fe4-a311-953e10c34244@admin",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
     console.log(id);
   };
 
   const fetchUserById = (id) => {
+    axios({
+      method: "get",
+      url: `http://localhost:3000/covatt-api/v1/user/${id}`,
+      headers: {
+        "x-admin-key": "8788e696-a72b-4fe4-a311-953e10c34244@admin",
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.error(err));
     console.log(id);
   };
 
@@ -80,7 +123,7 @@ function AdminBodyContent(props) {
                   <th>index</th>
                   <th>name</th>
                   <th>adhar number</th>
-                  <th>Contact Number</th>
+                  <th>Phone No.</th>
                   <th>registered at</th>
                   <th></th>
                 </tr>
@@ -90,8 +133,8 @@ function AdminBodyContent(props) {
                 <tr>
                   <th>index</th>
                   <th>consumer</th>
-                  <th>contact number</th>
-                  <th>vaccine brand</th>
+                  <th>Phone No.</th>
+                  <th>brand</th>
                   <th>vaccinator</th>
                   <th>location</th>
                   <th>vaccinated at</th>
@@ -103,7 +146,10 @@ function AdminBodyContent(props) {
               ? userRecords.map((record, i) => (
                   <tr style={row} id={record["_id"]}>
                     <td>{i + 1}</td>
-                    <td onClick={() => fetchUserById(record["_id"])}>
+                    <td
+                      style={btn_pointer}
+                      onClick={() => fetchUserById(record["_id"])}
+                    >
                       {record.name}
                     </td>
                     <td>{record["_id"]}</td>
@@ -111,10 +157,10 @@ function AdminBodyContent(props) {
                     <td>{record.createdAt}</td>
                     <>
                       <Button
-                        style={btn}
+                        style={btn_red}
                         onClick={() => deleteUser(record["_id"])}
                       >
-                        Delist
+                        X
                       </Button>
                     </>
                   </tr>
@@ -123,6 +169,7 @@ function AdminBodyContent(props) {
                   <tr style={row}>
                     <td>{i + 1}</td>
                     <td
+                      style={btn_pointer}
                       onClick={() => fetchUserById(record["consumer"]["_id"])}
                     >
                       {record["consumer"]["name"]}
@@ -130,6 +177,7 @@ function AdminBodyContent(props) {
                     <td>{record["consumer"]["contactNumber"]}</td>
                     <td>{record["brand"]}</td>
                     <td
+                      style={btn_pointer}
                       onClick={() => fetchUserById(record["vaccinator"]["_id"])}
                     >
                       {record["vaccinator"]["name"]}
@@ -138,15 +186,14 @@ function AdminBodyContent(props) {
                     <td>{record["createdAt"]}</td>
                     <>
                       <Button
-                        style={btn}
+                        style={btn_red}
                         onClick={() => deleteVaccine(record["_id"])}
                       >
-                        Delist
+                        X
                       </Button>
                     </>
                   </tr>
                 ))}
-            =======
           </Table>
         </Row>
       </Container>
