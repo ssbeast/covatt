@@ -1,10 +1,12 @@
 import React from "react";
 import {Container,Row,Button,Table, Form} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ClearIcon from '@material-ui/icons/Clear';
 
 function AdminBodyContent(){
    var btn={
-     backgroundColor:"#00BFA5",
+     backgroundColor:"transparent",
+     color : "black",
      border:"none",
      margin:"5px 10px",
    }
@@ -31,7 +33,7 @@ function AdminBodyContent(){
                     <th>adhar card</th>
                     <th>status</th>
                     <th>date</th>
-                    <th>delete</th>
+                    <th>delist</th>
                   </tr>                  
                 </thead>
                    <tr style={row}>
@@ -40,7 +42,7 @@ function AdminBodyContent(){
                     <td>19028469</td>
                     <td>Done</td>
                     <td>12-03-21</td>
-                     <><Button style={btn}>Delist</Button></>
+                     <><Button style={btn}><ClearIcon/></Button></>
                     </tr>
               
           </Table>
