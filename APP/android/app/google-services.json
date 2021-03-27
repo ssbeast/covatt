@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "981352884655",
+    "project_id": "covatt-7ca4a",
+    "storage_bucket": "covatt-7ca4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981352884655:android:97d222e95d742b395a675a",
+        "android_client_info": {
+          "package_name": "com.example.covatt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "981352884655-29in3m5pi0ucifnau5phm05cbgtqo7ve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAokybGXPzlccmxa-lR3ug4TGrxpmUon1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "981352884655-29in3m5pi0ucifnau5phm05cbgtqo7ve.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "981352884655-pqem10viv8u7sj0vqu9618uvh3a8quu3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.covatt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

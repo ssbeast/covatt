@@ -13,7 +13,7 @@ class App extends StatelessWidget {
       title: 'covatt',
       navigatorKey: get_it_instance_const<NavigationService>().navigatorKey,
       onGenerateRoute: route_generator.routes,
-      initialRoute: '/login',
+      initialRoute: '/splash_screen',
     );
   }
 }

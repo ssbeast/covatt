@@ -30,11 +30,16 @@ dependencies:
   percent_indicator: ^2.1.9+1
   image_picker: ^0.7.2
   pin_code_fields: ^6.1.0
-  path_provider: ^1.6.24
   flushbar: ^1.10.4
   qr_flutter: ^3.2.0
   barcode_scan_fix: ^1.0.2
+  firebase_core: ^1.0.1
+  cloud_firestore: ^1.0.3
+  firebase_storage:
+  firebase_auth: ^1.0.1
+  path_provider:
   get_it:
+  http: ^0.13.1
 
 dev_dependencies:
   flutter_test:

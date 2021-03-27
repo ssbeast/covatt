@@ -29,7 +29,10 @@ class CustomButton extends StatelessWidget {
           child: Text(
             text.toUpperCase(),
             style: TextStyle(
-                fontFamily: 'Poppins', color: accentColor, fontSize: 20),
+              fontFamily: 'Poppins',
+              color: accentColor,
+              fontSize: 20,
+            ),
           ),
         ),
       ),

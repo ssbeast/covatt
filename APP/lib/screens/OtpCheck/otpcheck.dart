@@ -1,7 +1,10 @@
+import 'package:covatt/services/get_it.dart';
+import 'package:covatt/services/navigation_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:covatt/services/navigation_service.dart';
-import 'package:covatt/services/get_it.dart';
+// import 'package:covatt/services/navigation_service.dart';
+// import 'package:covatt/services/get_it.dart';
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 
@@ -16,21 +19,21 @@ class OtpCheck extends StatefulWidget {
 class _OtpCheckState extends State<OtpCheck> {
   final NavigationService _navigationService =
       get_it_instance_const<NavigationService>();
-
-  var onTapRecognizer;
-
+  // final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final formKey = GlobalKey<FormState>();
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   TextEditingController textEditingController = TextEditingController();
   // ..text = "123456";
-
   StreamController<ErrorAnimationType> errorController;
 
+  String _verificationCode;
+  var onTapRecognizer;
   bool hasError = false;
   String currentText = "";
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
+    _verifyPhone();
     onTapRecognizer = TapGestureRecognizer()
       ..onTap = () {
         Navigator.pop(context);
@@ -204,7 +207,7 @@ class _OtpCheckState extends State<OtpCheck> {
                   height: 14,
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     formKey.currentState.validate();
 
                     if (currentText.length != 6) {
@@ -213,10 +216,24 @@ class _OtpCheckState extends State<OtpCheck> {
                         hasError = true;
                       });
                     } else {
-                      setState(() {
-                        hasError = false;
-                        _navigationService.navigateTo('/profile');
-                      });
+                      try {
+                        await FirebaseAuth.instance
+                            .signInWithCredential(PhoneAuthProvider.credential(
+                                verificationId: _verificationCode,
+                                smsCode: currentText))
+                            .then((value) async {
+                          if (value.user != null) {
+                            _navigationService.popAllAndReplace('/profile',
+                                arguments: {
+                                  'numberHolder': widget.numberHolder
+                                });
+                          }
+                        });
+                      } catch (e) {
+                        FocusScope.of(context).unfocus();
+                        print("In Exception Caught");
+                        //TODO: Show snackbar for otp not verified
+                      }
                     }
                   },
                   child: Container(
@@ -245,5 +262,33 @@ class _OtpCheckState extends State<OtpCheck> {
         ),
       ),
     );
+  }
+
+  _verifyPhone() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+91${widget.numberHolder}',
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await FirebaseAuth.instance
+              .signInWithCredential(credential)
+              .then((value) async {
+            if (value.user != null) {
+              _navigationService.popAllAndReplace('/first_screen');
+            }
+          });
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print(e.message);
+        },
+        codeSent: (String verficationID, int resendToken) {
+          setState(() {
+            _verificationCode = verficationID;
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationID) {
+          setState(() {
+            _verificationCode = verificationID;
+          });
+        },
+        timeout: Duration(seconds: 120));
   }
 }

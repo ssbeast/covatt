@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:covatt/common/custom_button.dart';
+import 'package:covatt/models/user.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class FamilyScreen extends StatefulWidget {
+  final UserData user;
+  FamilyScreen(this.user);
   @override
   _FamilyScreenState createState() => _FamilyScreenState();
 }
@@ -84,7 +90,18 @@ class _FamilyScreenState extends State<FamilyScreen> {
                   height: MediaQuery.of(context).size.height * 0.04,
                 ),
                 CustomButton(
-                  onpress: () {},
+                  onpress: () async {
+                    // var x = "605f0df7033b5c1a3402319b";
+                    var url = Uri.parse(
+                        "http://localhost:3000/covatt-api/v1/user/link/" +
+                            widget.user.id +
+                            "?with=" +
+                            familymemeberid);
+                    var response = await http.post(url);
+                    var body = jsonDecode(response.body);
+                    print(body);
+                    //TODO: CHECK IF SUCCESS ELSE SHOW SNACKBAR
+                  },
                   text: 'Add Family Member',
                   accentColor: Colors.white,
                   mainColor: Color(0xFF1DE9B6),

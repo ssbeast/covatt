@@ -1,15 +1,24 @@
-import 'package:covatt/common/custom_button.dart';
-import 'package:covatt/screens/FirstScreen/first_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'dart:convert';
 import 'dart:io';
+import 'package:covatt/common/custom_button.dart';
+import 'package:covatt/models/user.dart';
+import 'package:covatt/services/get_it.dart';
+import 'package:covatt/services/navigation_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class ProfileScreen extends StatefulWidget {
+  final String numberHolder;
+
+  ProfileScreen(this.numberHolder);
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   TextStyle defaultStyle = TextStyle(color: Colors.black, fontSize: 20.0);
   TextStyle linkStyle = TextStyle(color: Color(0xFF1DE9B6));
   DateTime selectedDate = DateTime.now();
@@ -95,6 +104,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final NavigationService _navigationService =
+        get_it_instance_const<NavigationService>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -182,14 +193,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.70,
+                  width: double.infinity,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         "Select Your Gender",
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.05,
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
@@ -226,20 +238,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.70,
+                  width: double.infinity,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         "${selectedDate.toLocal()}".split(' ')[0],
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width * 0.07,
+                            fontSize: MediaQuery.of(context).size.width * 0.04,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.03,
                       ),
+                      // ignore: deprecated_member_use
                       RaisedButton(
                         onPressed: () => _selectDate(context),
                         child: Text(
@@ -251,13 +265,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
+                // FlatButton(
+                //   onPressed: () {},
+                //   child: Text("Click me to upload"),
+                // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
                 CustomButton(
                   onpress: () async {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FirstScreen()));
+                    var url =
+                        Uri.parse("http://localhost:3000/covatt-api/v1/user");
+                    var response = await http.post(url,
+                        body: jsonEncode({
+                          'name': name,
+                          'contactNumber': widget.numberHolder,
+                          'uid': _auth.currentUser.uid
+                        }),
+                        headers: {
+                          "content-type": "application/json",
+                          "accept": "application/json",
+                        });
+                    var body = jsonDecode(response.body);
+                    UserData user = UserData.fromJson(body['data']);
+                    _navigationService.popAllAndReplace('/first_screen',
+                        arguments: {'user': user});
                   },
                   text: 'Continue',
                   accentColor: Colors.white,

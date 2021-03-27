@@ -1,16 +1,16 @@
+import 'package:covatt/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class FirstScreenBody extends StatelessWidget {
-  const FirstScreenBody({
-    Key key,
-  }) : super(key: key);
+  final UserData user;
+  // FirstScreenBody(this.user);
+  FirstScreenBody({Key key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print("This also");
     return Container(
-      padding: EdgeInsets.only(top: 30.0),
+      padding: EdgeInsets.only(top: 30.0, left: 15.0, right: 15.0),
       child: Column(
         children: [
           Align(
@@ -33,11 +33,11 @@ class FirstScreenBody extends StatelessWidget {
               animation: true,
               percent: 0.5,
               center: new Text(
-                "50.0%",
+                "1/2",
                 style: new TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
-                    color: Colors.black),
+                    fontSize: 50.0,
+                    color: Colors.teal[300]),
               ),
               // footer: new Text(
               //   "Sales this week",

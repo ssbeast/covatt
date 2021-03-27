@@ -1,5 +1,6 @@
 import 'package:covatt/common/custom_button.dart';
-import 'package:covatt/screens/otpcheck.dart';
+import 'package:covatt/services/get_it.dart';
+import 'package:covatt/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -8,6 +9,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final NavigationService _navigationService =
+      get_it_instance_const<NavigationService>();
+
   String phone = '';
   @override
   Widget build(BuildContext context) {
@@ -72,10 +76,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 CustomButton(
                   onpress: () async {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => OtpCheck(phone)));
+                    _navigationService.navigateTo('/otpcheck',
+                        arguments: {'numberHolder': phone});
                   },
                   text: 'Get OTP',
                   accentColor: Colors.white,
