@@ -1,0 +1,58 @@
+.createUser {
+    background-color: #F4F4F4;
+    width: 550px;
+    border-radius: 10px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    padding: 30px;
+}
+.createUser__closeIcon {
+    color: #A5A3A3;
+    font-size: 30px !important;
+    margin-left: 93%;
+}
+.createUser__form {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.createUser__form__inputs {
+    display: flex;
+    justify-content:space-between;
+ }
+ .createUser__form .createUser__form__inputs > input {
+    border: 0;
+    height: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+.createUser__form > input {
+    border: 0;
+    height: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+.createUser__form > textarea::placeholder {
+    font-size: large;
+}
+.createUser__form__options {
+    display: flex;
+    justify-content: space-between;
+}
+.createUser__form__button {
+    background-color: #00BFA5;
+    color: white;
+    width: 100%;
+    padding:10px 40px;
+    font-weight: bold;
+    font-size: large;
+    border: 0;
+    outline: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}

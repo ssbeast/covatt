@@ -1,0 +1,64 @@
+.vaccine {
+    background-color: #F4F4F4;
+    width: 460px;
+    border-radius: 10px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    padding: 30px;
+}
+.vaccine__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+.vaccine__closeIcon {
+    color: #A5A3A3;
+    font-size: 30px !important;
+    margin-left: 93%;
+}
+.vaccine__form {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.vaccine__form > input {
+    border: 0;
+    height: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+.vaccine__form > textarea::placeholder {
+    font-size: large;
+}
+.vaccine__form__options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.vacccine__form__options > select {
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+.vacDropdown {
+    width: 150px;
+}
+
+.vaccine__form__options > select > option {
+    border: none;
+}
+.vaccine__form__button {
+    background-color: #00BFA5;
+    color: white;
+    padding:10px 40px;
+    font-weight: bold;
+    font-size: large;
+    border: 0;
+    outline: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}

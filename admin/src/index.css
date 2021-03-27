@@ -14,8 +14,8 @@
   font-family: 'Poppins', sans-serif;
 }
 body {
-  background:white;
-  color: black;
+  background:white; 
+ color: black;
 }
 #root {
   height: 110vh;
