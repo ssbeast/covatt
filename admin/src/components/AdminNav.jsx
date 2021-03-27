@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "./css/AdminNav.css";
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import Avatar from '@material-ui/core/Avatar';
 
 

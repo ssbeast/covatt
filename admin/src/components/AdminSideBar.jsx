@@ -1,23 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 import "./css/AdminSideBar.css";
 import Button from '@material-ui/core/Button';
-import ChatIcon from '@material-ui/icons/Chat';
-import StarIcon from '@material-ui/icons/Star';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 function AdminSideBar() {
+  const [list,showList] = useState(false);
+  const displayList = () => {
+    showList(!list)
+  }
+  const [list2,showList2] = useState(false);
+  const displayList2 = () => {
+       showList2(!list2);
+  }
     return (
         <div className="adminSideBar">
             <div className="adminSideBar__content">
-                <Button className="adminSideBar__button" variant="contained">Users</Button>
-                <ul className="adminSideBar__content__upperList">
+                <Button className="adminSideBar__button" variant="contained" onClick={displayList}>Users</Button>
+                <ul className="adminSideBar__content__upperList" style={{ display : list ? "block" : "none" }}>
                 <li className="adminListItem"><a href="$#">create new user</a></li>
                   <li className="adminListItem"><a href="$#">get all users</a></li>
                   <li className="adminListItem"><a href="$#">delete user</a></li>
                   <li className="adminListItem"><a href="$#">link account</a></li>
                 </ul>
-                <Button className="adminSideBar__button" variant="contained">vaccines</Button>
-                <ul className="adminSideBar__content__upperList">
+                <br/>&nbsp;
+                <Button className="adminSideBar__button2" variant="contained" onClick={displayList2}>vaccines</Button>
+                <ul className="adminSideBar__content__upperList" style={{ display : list2 ? "block" : "none"}}>
                   <li className="adminListItem"><a href="$#">create vaccine record</a></li>
                   <li className="adminListItem"><a href="$#">get all records</a></li>
                   <li className="adminListItem"><a href="$#">delete records</a></li>

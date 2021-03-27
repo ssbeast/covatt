@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function AdminBodyContent(){
    var btn={
-     backgroundColor:"#62B1F6",
+     backgroundColor:"#00BFA5",
      border:"none",
      margin:"5px 10px",
    }
