@@ -73,7 +73,7 @@ exports.getUser = async (req, res, next) => {
       .populate("linkedAccounts", "name contactNumber vaccinations")
       .then(async (user) => {
         console.log(user);
-        console.log("ass")
+        console.log("ass");
         user.integrityKey = "azs";
         return res.status(200).json({
           success: true,
@@ -92,7 +92,7 @@ exports.getUser = async (req, res, next) => {
     //     });
     //   });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return res.status(500).json({
       success: false,
       error: err,
